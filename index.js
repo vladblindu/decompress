@@ -78,7 +78,7 @@ const extractFile = (input, output, opts) => runPlugins(input, opts).then(files 
 		const mode = x.mode & ~process.umask();
 		const now = new Date();
 
-		if (x.type === 'directory') {
+		if (x.type === 'directory' || x.path.endsWith('/')) {
 			return makeDir(output)
 				.then(outputPath => fsP.realpath(outputPath))
 				.then(realOutputPath => safeMakeDir(dest, realOutputPath))
